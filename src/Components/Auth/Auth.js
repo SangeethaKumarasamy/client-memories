@@ -65,7 +65,8 @@ const SignUp = () => {
     }
   };
 
-  const googleError = () =>
+  const googleError = (error) =>
+  console.log(error);
     alert("Google Sign In was unsuccessful. Try again later");
 
   const handleChange = (e) =>
@@ -131,7 +132,7 @@ const SignUp = () => {
             {isSignup ? "Sign Up" : "Sign In"}
           </Button>
           <GoogleLogin
-            clientId="419848232208-5hlqk22bh6kbp1q5ojks3us2ug8e7j06.apps.googleusercontent.com"
+            clientId="166678800218-pvp6for64750ct01gg1ko4lppalh5j02.apps.googleusercontent.com"
             render={(renderProps) => (
               <Button
                 className={classes.googleButton}

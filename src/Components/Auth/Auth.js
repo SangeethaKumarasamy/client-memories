@@ -65,8 +65,8 @@ const SignUp = () => {
     }
   };
 
-  const googleError = (error) =>
-  console.log(error);
+  const googleError = () =>
+ 
     alert("Google Sign In was unsuccessful. Try again later");
 
   const handleChange = (e) =>

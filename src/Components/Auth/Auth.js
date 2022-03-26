@@ -8,7 +8,7 @@ import {
   Typography,
   Container,
 } from "@material-ui/core";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { GoogleLogin } from "react-google-login";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 
@@ -30,7 +30,7 @@ const SignUp = () => {
   const [form, setForm] = useState(initialState);
   const [isSignup, setIsSignup] = useState(false);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const history = useHistory();
   const classes = useStyles();
 
   const [showPassword, setShowPassword] = useState(false);
@@ -46,9 +46,9 @@ const SignUp = () => {
     e.preventDefault();
 
     if (isSignup) {
-      dispatch(signup(form, navigate));
+      dispatch(signup(form, history));
     } else {
-      dispatch(signin(form, navigate));
+      dispatch(signin(form, history));
     }
   };
 
@@ -59,22 +59,21 @@ const SignUp = () => {
     try {
       dispatch({ type: AUTH, data: { result, token } });
 
-      navigate("/");
+      history.push("/");
     } catch (error) {
       console.log(error);
     }
   };
 
   const googleError = () =>
- 
-    alert("Google Sign In was unsuccessful. Try again later");
+    console.log("Google Sign In was unsuccessful. Try again later");
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
   return (
     <Container component="main" maxWidth="xs">
-      <Paper className={classes.paper} elevation={3}>
+      <Paper className={classes.paper} elevation={6}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
@@ -132,7 +131,8 @@ const SignUp = () => {
             {isSignup ? "Sign Up" : "Sign In"}
           </Button>
           <GoogleLogin
-            clientId="166678800218-pvp6for64750ct01gg1ko4lppalh5j02.apps.googleusercontent.com"
+            clientId="166678800218-pvp6for64750ct01gg1ko4lppalh5j02.apps.googleusercontent.com
+            "
             render={(renderProps) => (
               <Button
                 className={classes.googleButton}
@@ -150,7 +150,7 @@ const SignUp = () => {
             onFailure={googleError}
             cookiePolicy="single_host_origin"
           />
-          <Grid container justifyContent="flex-end">
+          <Grid container justify="flex-end">
             <Grid item>
               <Button onClick={switchMode}>
                 {isSignup

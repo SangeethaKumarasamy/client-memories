@@ -9,7 +9,7 @@ import {
   Paper,
 } from "@material-ui/core";
 import { useDispatch } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import ChipInput from "material-ui-chip-input";
 
 import { getPostsBySearch } from "../../actions/posts";
@@ -32,16 +32,16 @@ const Home = () => {
 
   const [search, setSearch] = useState("");
   const [tags, setTags] = useState([]);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const searchPost = () => {
     if (search.trim() || tags) {
       dispatch(getPostsBySearch({ search, tags: tags.join(",") }));
-      history.push(
+      navigate(
         `/posts/search?searchQuery=${search || "none"}&tags=${tags.join(",")}`
       );
     } else {
-      history.push("/");
+      navigate("/");
     }
   };
 

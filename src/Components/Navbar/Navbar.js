@@ -77,8 +77,7 @@ const Navbar = () => {
           </div>
         ) : (
           <Button
-            component={Link}
-            to="/auth"
+            onClick={()=>{ navigate("/auth")}}
             variant="contained"
             color="primary"
           >

@@ -17,12 +17,13 @@ const App = () => {
     <Container maxWidth="lg">
       <Navbar />
       <Routes>
-      <Route path="/" exact element={() => <Navigate replace to="/posts" />} />
+      <Route path="/" exact element={<Navigate replace to="/posts" />} />
         <Route path="/posts" element={<Home/>}/>
         <Route path="/posts/search" element={<Home/>}/>
         <Route path="/posts/:id" element={<PostDetails/>}/>
-        <Route path={['/creators/:name', '/tags/:name']} element={<CreatorOrTag/>} />
-        <Route path="/auth" element={() => (!user ? <Auth /> : <Navigate replace to="/posts" />)} />
+        <Route path='/creators/:name'element={<CreatorOrTag/>} />
+        <Route path='/tags/:name' element={<CreatorOrTag/>} />
+        <Route path="/auth" element={(!user ? <Auth /> : <Navigate replace to="/posts" />)} />
       </Routes>
       
     </Container>
